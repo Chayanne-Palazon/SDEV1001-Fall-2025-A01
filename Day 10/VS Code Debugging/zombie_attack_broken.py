@@ -9,7 +9,7 @@ decision = input("""
     C. Call the manager.
     D. Pull out your pocket shotgun and shoot the zombie.
     E. Take your lunch break.
-""").lower()
+""").upper()
 
 match decision:
     case "A":
@@ -19,15 +19,16 @@ match decision:
             print("You hit the zombie directly in the head with the jar of mayo.")
             print("It is impressed by your accuracy and invites you to join it's baseball team.")
             accept = input("Do you accept? (y/n)")
+        else:
             print("The zombie charges directly at you. Ya dead!")
     case "B":
         print("You grab a customer and throw it at the zombie.")
         distraction_chance = 5
         grab_customer_chance = 10
         grab_roll = random.randint(1, 12)
-        if grab_roll == 100:
+        if grab_roll >= grab_customer_chance:
             print("You grab the customer and toss them at the zombie.")
-            distraction_roll = 3
+            distraction_roll = random.randint(1, 10)
             if distraction_roll >= distraction_chance:
                 print("The zombie attacks the customer and you escape!")
             else:
@@ -36,7 +37,7 @@ match decision:
             print("The customer grabs you instead and throws you at the zombie. Ya dead!")
     case "C":
         print("You call for the manager, but it turns out THEY are the zombie. Ya dead!")
-    case "F":
+    case "D":
         print("You pull your pocket shotgun out of your back pocket. This is the moment you have been training for.")
         hit_chance = 2
         hit_roll = random.randint(1, 12)
@@ -47,10 +48,11 @@ match decision:
     case "E":
         print("It's lunch time. You charge at the zombie.")
         eat_chance = 10
-        eat_roll = random.randbytes(1)
+        eat_roll = random.randint(1, 12)
         if eat_roll >= eat_chance:
             print("You eat the zombie. It didn't expect that.")
         else:
-            print("The zombie bites back!")
+            print("The zombie bites back! Ya dead!")
+            
     case _:
         print("The zombie charges directly at you. Ya dead!")
